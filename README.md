@@ -2,7 +2,7 @@
 
 aws-FULLSTACK-TODO-APP/
 ├── backend/
-│   ├── app.py
+│   ├── applambda_function.py
 │   ├── requirements.txt
 │   ├── Dockerfile
 │   └── prometheus.yml
