@@ -1,0 +1,16 @@
+cloudwatch:
+  jobs:
+    - regions:
+        - us-east-1
+      metrics:
+        - aws_namespace: AWS/Lambda
+          aws_metric_name: Invocations
+          aws_dimensions: [FunctionName]
+          aws_dimension_select:
+            FunctionName: [todo_lambda]
+        - aws_namespace: AWS/ApiGateway
+          aws_metric_name: Count
+          aws_dimensions: [ApiName, Stage]
+          aws_dimension_select:
+            ApiName: [todo-api]
+            Stage: [prod]

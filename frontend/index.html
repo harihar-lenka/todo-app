@@ -1,57 +1,21 @@
-<!-- This HTML file creates a simple to-do list interface with an input field and button to add tasks.
-JavaScript fetches tasks from the back-end API (via fetchTasks) and posts new tasks (via addTask).
-The apiUrl placeholder should be replaced with the actual API Gateway URL after deployment. -->
-
-
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>To-Do App</title>
-    <style>
-        body { font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; }
-        input { padding: 5px; margin-right: 10px; }
-        button { padding: 5px 10px; }
-        ul { list-style-type: none; padding: 0; }
-        li { margin: 5px 0; }
-    </style>
+    <link rel="stylesheet" href="styles.css">
 </head>
+
 <body>
-    <h1>To-Do List</h1>
-    <input type="text" id="taskInput" placeholder="Enter a task">
-    <button onclick="addTask()">Add Task</button>
-    <ul id="taskList"></ul>
-    <script>
-        const apiUrl = "YOUR_API_GATEWAY_URL"; // Replace with API Gateway URL after deployment
-        // Fetch and display tasks
-        async function fetchTasks() {
-            const response = await fetch(`${apiUrl}/tasks`);
-            const tasks = await response.json();
-            const taskList = document.getElementById('taskList');
-            taskList.innerHTML = '';
-            tasks.forEach(task => {
-                const li = document.createElement('li');
-                li.textContent = task.task;
-                taskList.appendChild(li);
-            });
-        }
-        // Add a new task
-        async function addTask() {
-            const taskInput = document.getElementById('taskInput');
-            const task = taskInput.value;
-            if (task) {
-                await fetch(`${apiUrl}/tasks`, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ task })
-                });
-                taskInput.value = '';
-                fetchTasks();
-            }
-        }
-        // Load tasks on page load
-        fetchTasks();
-    </script>
+    <div class="container">
+        <h1>To-Do List</h1>
+        <input type="text" id="taskInput" placeholder="Enter a task">
+        <button onclick="addTask()">Add Task</button>
+        <ul id="taskList"></ul>
+    </div>
+    <script src="script.js"></script>
 </body>
+
 </html>
